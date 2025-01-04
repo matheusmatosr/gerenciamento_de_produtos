@@ -41,18 +41,18 @@ export default function ProductDialog({
         >
             <form className="space-y-4">
                 <div className="field">
-                    <label htmlFor="nome" className="block text-sm font-medium text-gray-300 mb-1">Nome</label>
+                    <label htmlFor="nome" className="block text-sm font-medium text-gray-400 mb-1">Nome</label>
                     <InputText
                         id="nome"
                         {...register('nome')}
-                        className="w-full rounded border-gray-700 text-black bg-gray-400"
+                        className="w-full rounded border-gray-700 bg-gray-200 text-black"
                     />
                     {errors.nome && (
                         <small className="block text-red-400 mt-1">{errors.nome.message}</small>
                     )}
                 </div>
                 <div className="field">
-                    <label htmlFor="preco" className="block text-sm font-medium text-gray-300 mb-1">Preço</label>
+                    <label htmlFor="preco" className="block text-sm font-medium text-gray-400 mb-1">Preço</label>
                     <InputNumber
                         id="preco"
                         value={editingProduct?.preco || ''}
@@ -61,11 +61,11 @@ export default function ProductDialog({
                         className="w-full rounded border-gray-700 bg-gray-700 text-black"
                     />
                     {errors.preco && (
-                        <small className="block text-red-400 mt-1">{errors.preco.message}</small>
+                        <small className="block text-red-400 mt-1">Informe somente números</small>
                     )}
                 </div>
                 <div className="field">
-                    <label htmlFor="quantidade" className="block text-sm font-medium text-gray-300 mb-1">Quantidade</label>
+                    <label htmlFor="quantidade" className="block text-sm font-medium text-gray-400 mb-1">Quantidade</label>
                     <InputNumber
                         id="quantidade"
                         value={editingProduct?.quantidade || ''}
@@ -73,7 +73,7 @@ export default function ProductDialog({
                         className="w-full rounded border-gray-700 bg-gray-700 text-black"
                     />
                     {errors.quantidade && (
-                        <small className="block text-red-400 mt-1">{errors.quantidade.message}</small>
+                        <small className="block text-red-400 mt-1">Informe somente números</small>
                     )}
                 </div>
             </form>
