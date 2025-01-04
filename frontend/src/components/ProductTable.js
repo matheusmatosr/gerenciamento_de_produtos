@@ -7,13 +7,12 @@ export default function ProductTable({ products, actionTemplate }) {
             value={products}
             responsiveLayout="scroll"
             className="bg-gray-800 text-white rounded shadow-lg"
-            headerStyle={{ backgroundColor: '#2D3748', color: '#fff' }}
-            footerStyle={{ backgroundColor: '#2D3748', color: '#fff' }}
+            style={{ backgroundColor: '#2D3748', color: '#fff' }}
         >
-            <Column field="name" header="Name" sortable headerStyle={{ color: '#A0AEC0' }}></Column>
-            <Column field="price" header="Price" sortable headerStyle={{ color: '#A0AEC0' }}></Column>
-            <Column field="quantity" header="Quantity" sortable headerStyle={{ color: '#A0AEC0' }}></Column>
-            <Column body={actionTemplate} header="Actions" headerStyle={{ color: '#A0AEC0' }}></Column>
+            <Column field="nome" header="Nome" sortable style={{ color: '#A0AEC0' }}></Column>
+            <Column field="preco" header="Preço" sortable style={{ color: '#A0AEC0' }}></Column>
+            <Column field="quantidade" header="Quantidade" sortable style={{ color: '#A0AEC0' }}></Column>
+            <Column body={actionTemplate} header="Ações" style={{ color: '#A0AEC0' }}></Column>
         </DataTable>
     );
 }

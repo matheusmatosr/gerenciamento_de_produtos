@@ -10,12 +10,17 @@ export default function ProductDialog({
     errors,
     handleSubmit,
     editingProduct,
+    setValue,
 }) {
+    const handleInputChange = (field, value) => {
+        setValue(field, value, { shouldValidate: true });
+    };
+
     return (
         <Dialog
             visible={isVisible}
             onHide={onHide}
-            header={editingProduct ? 'Edit Product' : 'Add Product'}
+            header={editingProduct?.nome ? `Editar Produto: ${editingProduct.nome}` : 'Add Produto'}
             className="rounded-lg shadow-lg bg-gray-800 text-white"
             footer={
                 <div className="flex justify-end gap-2 mt-4">
@@ -23,50 +28,52 @@ export default function ProductDialog({
                         onClick={onHide}
                         className="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-500"
                     >
-                        Cancel
+                        Cancelar
                     </button>
                     <button
                         onClick={handleSubmit(onSave)}
                         className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-500"
                     >
-                        Save
+                        Salvar
                     </button>
                 </div>
             }
         >
             <form className="space-y-4">
                 <div className="field">
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">Name</label>
+                    <label htmlFor="nome" className="block text-sm font-medium text-gray-300 mb-1">Nome</label>
                     <InputText
-                        id="name"
-                        {...register('name')}
-                        className="w-full rounded border-gray-700 bg-gray-700 text-white"
+                        id="nome"
+                        {...register('nome')}
+                        className="w-full rounded border-gray-700 text-black bg-gray-400"
                     />
-                    {errors.name && (
-                        <small className="block text-red-400 mt-1">{errors.name.message}</small>
+                    {errors.nome && (
+                        <small className="block text-red-400 mt-1">{errors.nome.message}</small>
                     )}
                 </div>
                 <div className="field">
-                    <label htmlFor="price" className="block text-sm font-medium text-gray-300 mb-1">Price</label>
+                    <label htmlFor="preco" className="block text-sm font-medium text-gray-300 mb-1">Preço</label>
                     <InputNumber
-                        id="price"
-                        {...register('price', { valueAsNumber: true })}
+                        id="preco"
+                        value={editingProduct?.preco || ''}
+                        onValueChange={(e) => handleInputChange('preco', e.value, { shouldValidate: true })}
                         mode="decimal"
-                        className="w-full rounded border-gray-700 bg-gray-700 text-white"
+                        className="w-full rounded border-gray-700 bg-gray-700 text-black"
                     />
-                    {errors.price && (
-                        <small className="block text-red-400 mt-1">{errors.price.message}</small>
+                    {errors.preco && (
+                        <small className="block text-red-400 mt-1">{errors.preco.message}</small>
                     )}
                 </div>
                 <div className="field">
-                    <label htmlFor="quantity" className="block text-sm font-medium text-gray-300 mb-1">Quantity</label>
+                    <label htmlFor="quantidade" className="block text-sm font-medium text-gray-300 mb-1">Quantidade</label>
                     <InputNumber
-                        id="quantity"
-                        {...register('quantity', { valueAsNumber: true })}
-                        className="w-full rounded border-gray-700 bg-gray-700 text-white"
+                        id="quantidade"
+                        value={editingProduct?.quantidade || ''}
+                        onValueChange={(e) => handleInputChange('quantidade', e.value)}
+                        className="w-full rounded border-gray-700 bg-gray-700 text-black"
                     />
-                    {errors.quantity && (
-                        <small className="block text-red-400 mt-1">{errors.quantity.message}</small>
+                    {errors.quantidade && (
+                        <small className="block text-red-400 mt-1">{errors.quantidade.message}</small>
                     )}
                 </div>
             </form>

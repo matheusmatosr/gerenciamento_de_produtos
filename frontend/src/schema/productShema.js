@@ -1,7 +1,7 @@
-import * as z from 'zod';
+import { z } from "zod";
 
 export const productSchema = z.object({
-    name: z.string().nonempty('Name is required'),
-    price: z.number().positive('Price must be positive'),
-    quantity: z.number().int().min(0, 'Quantity must be at least 0'),
+    nome: z.string().nonempty("O nome é obrigatório"),
+    preco: z.number().positive("O preço deve ser maior que zero"),
+    quantidade: z.number().int().positive("A quantidade deve ser maior que zero"),
 });
