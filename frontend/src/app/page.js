@@ -33,7 +33,7 @@ export default function ProductManagement() {
       const data = await fetchProducts();
       setProducts(data);
     } catch (error) {
-       console.error(error.message);
+      console.error(error.message);
     }
   };
 
@@ -43,13 +43,13 @@ export default function ProductManagement() {
 
   const openNewProductForm = () => {
     setEditingProduct(null);
-    reset({ nome: '', preco: 0, quantidade: 0 });
+    reset({ nome: "", preco: 0, quantidade: 0 });
     setDialogVisible(true);
   };
 
   const openEditProductForm = (product) => {
     setEditingProduct(product);
-    reset(product); 
+    reset(product);
     setDialogVisible(true);
   };
 
@@ -60,20 +60,23 @@ export default function ProductManagement() {
         setProducts((prev) =>
           prev.map((p) => (p.id === editingProduct.id ? { ...p, ...data } : p))
         );
+        alert("Produto editado com sucesso!");
       } else {
         const newProduct = await createProduct(data);
         setProducts((prev) => [...prev, newProduct]);
+        alert("Produto adicionado com sucesso!");
       }
       setDialogVisible(false);
     } catch (error) {
       console.error(error.message);
     }
-  };
+  };  
 
   const deleteProductHandler = async (id) => {
     try {
       await deleteProduct(id);
       setProducts((prev) => prev.filter((p) => p.id !== id));
+      alert("Produto deletado com sucesso!");
     } catch (error) {
       console.error(error.message);
     }
@@ -97,12 +100,14 @@ export default function ProductManagement() {
   );
 
   return (
-    <div className="min-h-screen bg-gray-100 p-8">
-      <div className="max-w-7xl mx-auto bg-white shadow rounded-lg p-6">
-        <h1 className="text-3xl font-bold text-gray-800 mb-6">Gestão de Produto</h1>
+    <div className="min-h-screen flex  justify-center bg-gray-100 p-8">
+      <div className="max-w-7xl w-full mx-auto bg-white shadow rounded-lg p-[20px]">
+        <h1 className="text-3xl font-bold text-gray-800 mb-5 text-center underline">
+          Gestão de Produtos
+        </h1>
         <button
           onClick={openNewProductForm}
-          className="bg-green-500 text-white px-6 py-2 rounded shadow hover:bg-green-600 mb-4"
+          className="bg-green-500 text-white px-6 py-2 rounded shadow hover:bg-green-600 mb-4 ml-auto block"
         >
           Adicionar Produto
         </button>

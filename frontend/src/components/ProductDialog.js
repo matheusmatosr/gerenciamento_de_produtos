@@ -20,8 +20,9 @@ export default function ProductDialog({
         <Dialog
             visible={isVisible}
             onHide={onHide}
-            header={editingProduct?.nome ? `Editar Produto: ${editingProduct.nome}` : 'Add Produto'}
+            header={editingProduct?.nome ? `Editar Produto: ${editingProduct.nome}` : 'Adicionar Produto'}
             className="rounded-lg shadow-lg bg-gray-800 text-white"
+            style={{ width: '90vw', maxWidth: '600px' }}
             footer={
                 <div className="flex justify-end gap-2 mt-4">
                     <button
@@ -39,42 +40,50 @@ export default function ProductDialog({
                 </div>
             }
         >
-            <form className="space-y-4">
+            <form className="space-y-6">
                 <div className="field">
-                    <label htmlFor="nome" className="block text-sm font-medium text-gray-400 mb-1">Nome</label>
+                    <label htmlFor="nome" className="block text-sm font-medium text-gray-700 mb-1">
+                        Nome
+                    </label>
                     <InputText
                         id="nome"
                         {...register('nome')}
-                        className="w-full rounded border-gray-700 bg-gray-200 text-black"
+                        className="w-full rounded border border-gray-400 bg-gray-200 text-black py-2 px-3 focus:ring focus:ring-blue-500 focus:outline-none"
                     />
                     {errors.nome && (
                         <small className="block text-red-400 mt-1">{errors.nome.message}</small>
                     )}
                 </div>
-                <div className="field">
-                    <label htmlFor="preco" className="block text-sm font-medium text-gray-400 mb-1">Preço</label>
-                    <InputNumber
-                        id="preco"
-                        value={editingProduct?.preco || ''}
-                        onValueChange={(e) => handleInputChange('preco', e.value, { shouldValidate: true })}
-                        mode="decimal"
-                        className="w-full rounded border-gray-700 bg-gray-700 text-black"
-                    />
-                    {errors.preco && (
-                        <small className="block text-red-400 mt-1">Informe somente números</small>
-                    )}
-                </div>
-                <div className="field">
-                    <label htmlFor="quantidade" className="block text-sm font-medium text-gray-400 mb-1">Quantidade</label>
-                    <InputNumber
-                        id="quantidade"
-                        value={editingProduct?.quantidade || ''}
-                        onValueChange={(e) => handleInputChange('quantidade', e.value)}
-                        className="w-full rounded border-gray-700 bg-gray-700 text-black"
-                    />
-                    {errors.quantidade && (
-                        <small className="block text-red-400 mt-1">Informe somente números</small>
-                    )}
+                <div className="flex gap-4">
+                    <div className="field flex-1">
+                        <label htmlFor="preco" className="block text-sm font-medium text-gray-700 mb-1">
+                            Preço
+                        </label>
+                        <InputNumber
+                            id="preco"
+                            value={editingProduct?.preco || ''}
+                            onValueChange={(e) => handleInputChange('preco', e.value, { shouldValidate: true })}
+                            mode="decimal"
+                            inputClassName="w-full rounded border border-gray-400 bg-gray-200 text-black py-2 px-3 focus:ring focus:ring-blue-500 focus:outline-none"
+                        />
+                        {errors.preco && (
+                            <small className="block text-red-400 mt-1">Informe somente números</small>
+                        )}
+                    </div>
+                    <div className="field flex-1">
+                        <label htmlFor="quantidade" className="block text-sm font-medium text-gray-700 mb-1">
+                            Quantidade
+                        </label>
+                        <InputNumber
+                            id="quantidade"
+                            value={editingProduct?.quantidade || ''}
+                            onValueChange={(e) => handleInputChange('quantidade', e.value)}
+                            inputClassName="w-full rounded border border-gray-400 bg-gray-200 text-black py-2 px-3 focus:ring focus:ring-blue-500 focus:outline-none"
+                        />
+                        {errors.quantidade && (
+                            <small className="block text-red-400 mt-1">Informe somente números</small>
+                        )}
+                    </div>
                 </div>
             </form>
         </Dialog>
