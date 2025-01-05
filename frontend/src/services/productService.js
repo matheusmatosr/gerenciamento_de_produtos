@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:3000/produtos";
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export const fetchProducts = async () => {
   const response = await fetch(API_URL);
