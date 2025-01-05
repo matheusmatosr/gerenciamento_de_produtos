@@ -48,6 +48,7 @@ export default function ProductDialog({
                     <InputText
                         id="nome"
                         {...register('nome')}
+                        defaultValue={editingProduct?.nome || ''}
                         className="w-full rounded border border-gray-400 bg-gray-200 text-black py-2 px-3 focus:ring focus:ring-blue-500 focus:outline-none"
                     />
                     {errors.nome && (

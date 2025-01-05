@@ -7,11 +7,12 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { productSchema } from "@/schema/productShema";
 import {
-  fetchProducts,
-  createProduct,
-  updateProduct,
-  deleteProduct,
-} from "@/services/productService";
+  loadProducts,
+  openNewProductForm,
+  openEditProductForm,
+  saveProduct,
+  deleteProductHandler,
+} from "@/utils/productManagementUtils";
 
 export default function ProductManagement() {
   const [products, setProducts] = useState([]);
@@ -28,85 +29,35 @@ export default function ProductManagement() {
     resolver: zodResolver(productSchema),
   });
 
-  const loadProducts = async () => {
-    try {
-      const data = await fetchProducts();
-      setProducts(data);
-    } catch (error) {
-      console.error(error.message);
-    }
-  };
-
   useEffect(() => {
-    loadProducts();
+    loadProducts(setProducts);
   }, []);
-
-  const openNewProductForm = () => {
-    setEditingProduct(null);
-    reset({ nome: "", preco: 0, quantidade: 0 });
-    setDialogVisible(true);
-  };
-
-  const openEditProductForm = (product) => {
-    setEditingProduct(product);
-    reset(product);
-    setDialogVisible(true);
-  };
-
-  const saveProduct = async (data) => {
-    try {
-      if (editingProduct) {
-        await updateProduct(editingProduct.id, data);
-        setProducts((prev) =>
-          prev.map((p) => (p.id === editingProduct.id ? { ...p, ...data } : p))
-        );
-        alert("Produto editado com sucesso!");
-      } else {
-        const newProduct = await createProduct(data);
-        setProducts((prev) => [...prev, newProduct]);
-        alert("Produto adicionado com sucesso!");
-      }
-      setDialogVisible(false);
-    } catch (error) {
-      console.error(error.message);
-    }
-  };  
-
-  const deleteProductHandler = async (id) => {
-    try {
-      await deleteProduct(id);
-      setProducts((prev) => prev.filter((p) => p.id !== id));
-      alert("Produto deletado com sucesso!");
-    } catch (error) {
-      console.error(error.message);
-    }
-  };
 
   const actionTemplate = (rowData) => (
     <div className="flex gap-2">
       <button
         className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
-        onClick={() => openEditProductForm(rowData)}
+        onClick={() => openEditProductForm(rowData, reset, setDialogVisible, setEditingProduct)} // Adicionando o setEditingProduct
       >
         Editar
       </button>
       <button
         className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
-        onClick={() => deleteProductHandler(rowData.id)}
+        onClick={() => deleteProductHandler(rowData.id, setProducts)}
       >
         Deletar
       </button>
     </div>
-  );
+  );  
 
   return (
-    <div className="min-h-screen flex  justify-center bg-gray-100 p-8">
+    <div className="min-h-screen flex justify-center bg-gray-100 p-8">
       <div className="max-w-7xl w-full mx-auto bg-white shadow rounded-lg p-[20px]">
         <h1 className="text-3xl font-bold text-gray-800 mb-5 text-center underline">
           Gestão de Produtos
         </h1>
         <button
-          onClick={openNewProductForm}
+          onClick={() => openNewProductForm(reset, setDialogVisible, setEditingProduct)}
           className="bg-green-500 text-white px-6 py-2 rounded shadow hover:bg-green-600 mb-4 ml-auto block"
         >
           Adicionar Produto
@@ -115,7 +66,7 @@ export default function ProductManagement() {
         <ProductDialog
           isVisible={isDialogVisible}
           onHide={() => setDialogVisible(false)}
-          onSave={saveProduct}
+          onSave={(data) => saveProduct(editingProduct, data, setProducts, setDialogVisible)}
           register={register}
           errors={errors}
           handleSubmit={handleSubmit}
