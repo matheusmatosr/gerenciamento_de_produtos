@@ -61,7 +61,7 @@ npm install
 4. Para adicionar o arquivo **.env** no raíz da projeto, ou seja, dentro da pasta do ./frontend e adicione no arquivo a url da API do backend:
 
 ```bash
-API_URL="http://localhost:3000/produtos"
+NEXT_PUBLIC_API_URL="http://localhost:3000/produtos"
 ```
 
 5. Para rodar o projeto:
