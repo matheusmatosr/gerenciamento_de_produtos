@@ -1,5 +1,4 @@
-
-## Gerenciamento de Projetos.
+## Sistema de Gerenciamento de Produtos.
 
 Este projeto web possui uma única página principal aonde é possível o usuário criar seus produtos e os mesmos serem exibidos na tabela, ficando disponível para a edição/exclusão.
 
