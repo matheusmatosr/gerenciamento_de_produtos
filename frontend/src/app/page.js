@@ -5,7 +5,8 @@ import ProductTable from "@/components/ProductTable";
 import ProductDialog from "@/components/ProductDialog";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { productSchema } from "@/schema/productShema";
+import { productZod } from "@/validators/productZod";
+
 import {
   loadProducts,
   openNewProductForm,
@@ -26,7 +27,7 @@ export default function ProductManagement() {
     setValue,
     formState: { errors },
   } = useForm({
-    resolver: zodResolver(productSchema),
+    resolver: zodResolver(productZod),
   });
 
   useEffect(() => {

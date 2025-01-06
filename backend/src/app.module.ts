@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { ProdutosModule } from './produtos/produtos.module';
+import { ProdutosModule } from './models/produtos.module';
 
 @Module({
   imports: [ProdutosModule],

@@ -31,6 +31,10 @@ export default function ProductTable({ products, actionTemplate }) {
     );
   };
 
+  const priceTemplate = (rowData) => {
+    return <span>R$ {rowData.preco}</span>;
+  };
+
   return (
     <div className="overflow-y-auto rounded shadow-lg">
       {renderSearch()}
@@ -44,7 +48,13 @@ export default function ProductTable({ products, actionTemplate }) {
         globalFilter={globalFilterValue}
       >
         <Column field="nome" header="Nome" sortable style={{ color: '#A0AEC0' }} />
-        <Column field="preco" header="Preço" sortable style={{ color: '#A0AEC0' }} />
+        <Column
+          field="preco"
+          header="Preço"
+          body={priceTemplate}
+          sortable
+          style={{ color: '#A0AEC0' }}
+        />
         <Column field="quantidade" header="Quantidade" sortable style={{ color: '#A0AEC0' }} />
         <Column body={actionTemplate} header="Ações" style={{ color: '#A0AEC0' }} />
       </DataTable>
