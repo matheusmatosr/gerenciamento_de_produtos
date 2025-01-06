@@ -70,4 +70,4 @@ NEXT_PUBLIC_API_URL="http://localhost:3000/produtos"
 npm run dev
 ```
 
-Acesse o projeto no navegador pelo link gerado no terminal (geralmente http://localhost:3000).
+Acesse o projeto no navegador pelo link gerado no terminal (geralmente http://localhost:3001).
