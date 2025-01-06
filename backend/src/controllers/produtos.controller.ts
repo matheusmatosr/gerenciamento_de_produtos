@@ -8,7 +8,7 @@ import {
   Delete,
   ParseIntPipe,
 } from '@nestjs/common';
-import { ProdutosService } from './produtos.service';
+import { ProdutosService } from '../services/produtos.service';
 import { ProdutoDto } from '../dto/produto.dto';
 
 @Controller('produtos')
