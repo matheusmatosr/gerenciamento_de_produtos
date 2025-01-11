@@ -7,7 +7,7 @@ Este projeto web possui uma única página principal aonde é possível o usuár
 - Bakend: NestJS e Prisma.
 - Banco PostgreSQL.
 
-<img src="./frontend/src/assets/gerenciamento_produtos.png" alt="Imagem do Projeto" width="600" style="border-radius: 20px; margin-top: 16px;">
+<img src="./frontend/src/assets/gerenciamento_produtos.png" alt="Imagem do Projeto" width="80%" style="border-radius: 20px; margin-top: 16px;">
 
 ### 🖥️ Instalação
 
