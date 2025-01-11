@@ -2,10 +2,12 @@
 
 Este projeto web possui uma única página principal aonde é possível o usuário criar seus produtos e os mesmos serem exibidos na tabela, ficando disponível para a edição/exclusão.
 
-Foi utilizado nesse projeto as tecnologias:
+#### Tecnologias usadas:
 - Frontend: NextJS, TailwindCSS, PrimeReact, Zod, Hook Form, ReactQuery.
 - Bakend: NestJS e Prisma.
 - Banco PostgreSQL.
+
+<img src="./frontend/src/assets/gerenciamento_produtos.png" alt="Imagem do Projeto" width="600" style="border-radius: 20px; margin-top: 16px;">
 
 ### 🖥️ Instalação
 
